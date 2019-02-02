@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".NotificationActivity">
 
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:layout_margin="3dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/capture_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My text"
-        android:textSize="20dp"
-        android:textColor="#0f0f0f"/>
+        android:text="@string/capture" />
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/picture"
+        android:layout_margin="5dp"
+        android:background="@drawable/pic_border" />
+
+</LinearLayout>

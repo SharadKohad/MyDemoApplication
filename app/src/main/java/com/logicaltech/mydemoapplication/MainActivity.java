@@ -27,12 +27,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity
 {
     ListView ListView1;
+    Button button,buttonTree,ViewPager,checkout;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView1= (ListView) findViewById(R.id.listview);
+        button = (Button) findViewById(R.id.button_image);
+        buttonTree = (Button) findViewById(R.id.button_tree);
+        ViewPager = (Button) findViewById(R.id.button_imageview);
+        checkout =(Button) findViewById(R.id.button_checkout);
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Api.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         Api api = retrofit.create(Api.class);
@@ -56,6 +61,44 @@ public class MainActivity extends AppCompatActivity
             public void onFailure(Call<List<Hero>> call, Throwable t)
             {
                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getApplicationContext(),NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonTree.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getApplicationContext(),RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ViewPager.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getApplicationContext(),ViewPagerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CheckOutActivity.class);
+                startActivity(intent);
             }
         });
     }
