@@ -13,7 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:text="Welcome to UKEY HEALTH"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="#81C784"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,200 +54,193 @@
             android:layout_marginTop="5dp"
             android:text="Sign in to continue"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:textColor="#81C784" />
+            android:textColor="#81C784"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="USERNAME"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
 
-        <android.support.design.widget.TextInputEditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="text"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PASSWORD"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UserName"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
+        </android.support.design.widget.TextInputLayout>
 
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/spacing_mlarge" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bank Account"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:hint="Email"
+                android:padding="14dp"
+                android:maxLength="40"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/spacing_mlarge" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IFC Code"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bank Name"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:hint="Email"
+                android:padding="14dp"
+                android:maxLength="40"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/spacing_mlarge" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bank Branch"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/blue_grey_200" />
-
-        <android.support.design.widget.TextInputEditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/light_green_100"
-            android:theme="@style/EditText.Green" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:hint="Email"
+                android:padding="14dp"
+                android:maxLength="40"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mlarge" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mlarge" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mlarge" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_mlarge" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/green_boarder_edittext">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Email"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="#0000"/>
+
+        </android.support.design.widget.TextInputLayout>
 
         <View
             android:layout_width="0dp"
@@ -274,7 +267,6 @@
             android:layout_marginTop="@dimen/spacing_medium"
             android:gravity="center"
             android:orientation="horizontal">
-
 
             <TextView
                 android:layout_width="wrap_content"

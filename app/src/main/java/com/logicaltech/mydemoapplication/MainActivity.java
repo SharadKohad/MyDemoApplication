@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity
 {
     ListView ListView1;
-    Button button,buttonTree,ViewPager,checkout;
+    Button button,buttonTree,ViewPager,checkout,SqlServer;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         buttonTree = (Button) findViewById(R.id.button_tree);
         ViewPager = (Button) findViewById(R.id.button_imageview);
         checkout =(Button) findViewById(R.id.button_checkout);
+        SqlServer=(Button) findViewById(R.id.button_SqlServer);
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Api.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         Api api = retrofit.create(Api.class);
@@ -94,10 +95,22 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        checkout.setOnClickListener(new View.OnClickListener() {
+        checkout.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(getApplicationContext(),CheckOutActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        SqlServer.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getApplicationContext(),SqlServerActivity.class);
                 startActivity(intent);
             }
         });

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.logicaltech.mydemoapplication.fragment.FragmentConfirmation;
 import com.logicaltech.mydemoapplication.fragment.FragmentPayment;
 import com.logicaltech.mydemoapplication.fragment.FragmentShipping;
@@ -26,13 +25,10 @@ public class CheckOutActivity extends AppCompatActivity
         PAYMENT,
         CONFIRMATION
     }
-
     State[] array_state = new State[]{State.SHIPPING, State.PAYMENT, State.CONFIRMATION};
-
     private View line_first, line_second;
     private ImageView image_shipping, image_payment, image_confirm;
     private TextView tv_shipping, tv_payment, tv_confirm;
-
     private int idx_state = 0;
 
     @Override
@@ -80,9 +76,7 @@ public class CheckOutActivity extends AppCompatActivity
         });
     }
 
-
-    private void displayFragment(State state)
-    {
+    private void displayFragment(State state) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = null;
@@ -94,6 +88,7 @@ public class CheckOutActivity extends AppCompatActivity
             tv_shipping.setTextColor(getResources().getColor(R.color.grey_90));
             image_shipping.clearColorFilter();
         }
+
         else if (state.name().equalsIgnoreCase(State.PAYMENT.name()))
         {
             fragment = new FragmentPayment();
@@ -110,21 +105,19 @@ public class CheckOutActivity extends AppCompatActivity
             image_confirm.clearColorFilter();
             tv_confirm.setTextColor(getResources().getColor(R.color.grey_90));
         }
-
         if (fragment == null) return;
         fragmentTransaction.replace(R.id.frame_content, fragment);
         fragmentTransaction.commit();
     }
-    private void refreshStepTitle()
-    {
+
+    private void refreshStepTitle() {
         tv_shipping.setTextColor(getResources().getColor(R.color.grey_20));
         tv_payment.setTextColor(getResources().getColor(R.color.grey_20));
         tv_confirm.setTextColor(getResources().getColor(R.color.grey_20));
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home)
         {
             finish();
@@ -135,4 +128,5 @@ public class CheckOutActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

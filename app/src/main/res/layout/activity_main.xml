@@ -42,7 +42,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_imageview"
-        android:text="View Pager"
+        android:text="Check Out"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_SqlServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_checkout"
+        android:text="SQL Server"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
