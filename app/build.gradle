@@ -35,4 +35,7 @@ dependencies
             implementation fileTree(dir: 'libs', include: ['*.jar'])
             implementation 'com.android.support:appcompat-v7:23.1.1'
             implementation 'com.ss.bannerslider:bannerslider:1.8.0'  //  Banner Slider
+            // google maps library ------------------------------------------------------------------------
+            implementation 'com.google.android.gms:play-services-maps:15.0.1'
+            implementation 'com.google.android.gms:play-services-places:15.0.1'
         }

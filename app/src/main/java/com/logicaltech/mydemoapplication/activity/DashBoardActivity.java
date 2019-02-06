@@ -1,8 +1,10 @@
 package com.logicaltech.mydemoapplication.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.logicaltech.mydemoapplication.R;
 
@@ -27,6 +30,8 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 {
     BannerSlider bannerSlider;
     List<Banner> banners=new ArrayList<>();
+    LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,11 +49,44 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         navigationView.setNavigationItemSelectedListener(this);
 
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
+        CV_Mobile_Reacharge = (LinearLayout) findViewById(R.id.linearlayout_mobile_reacharge);
+        CV_Eletricity_Recharge = (LinearLayout) findViewById(R.id.linear_layout_electricity);
+        LL_Flight_Booking = (LinearLayout) findViewById(R.id.linear_layout_flightbooking);
         //add banner using resource drawable
         banners.add(new DrawableBanner(R.drawable.slider1));
         banners.add(new DrawableBanner(R.drawable.slider2));
         banners.add(new DrawableBanner(R.drawable.slider3));
         bannerSlider.setBanners(banners);
+
+        CV_Mobile_Reacharge.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent = new Intent(DashBoardActivity.this,RechargeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        CV_Eletricity_Recharge.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent = new Intent(DashBoardActivity.this,ElectricityRechargeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LL_Flight_Booking.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent = new Intent(DashBoardActivity.this,FlightBookActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
