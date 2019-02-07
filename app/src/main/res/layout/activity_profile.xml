@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@color/colorPrimary">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_view_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/profile_icon" />
+
+        <TextView
+            android:id="@+id/tv_totalbalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/white"
+            android:layout_below="@+id/image_view_profile" />
+
+
+        <Button
+            android:id="@+id/button_friend_invite"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_totalbalance"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/box_circul_background"
+            android:text="Logout"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_100sdp"
+            android:textColor="@color/black"
+            android:textSize="8dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_Account_Setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/box_shadow">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="Account Setting"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/box_shadow">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="Term And Condition"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/box_shadow">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="Privacy Policy"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/box_shadow">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="Support"
+                android:gravity="center|left"
+                android:paddingLeft="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

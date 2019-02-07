@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.SignInButton;
+import com.google.gson.JsonObject;
 import com.logicaltech.mydemoapplication.R;
 
 import org.json.JSONException;
@@ -53,7 +54,6 @@ public class SignInActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
     }
-
     public void init()
     {
         linearLayoutSignUp = (LinearLayout)findViewById(R.id.llsign_up_for_account);
@@ -132,7 +132,8 @@ public class SignInActivity extends AppCompatActivity
                         String email = jsonObject.getString("Email");
                         String mobileNo = jsonObject.getString("Mobile_No");
                         String userName = jsonObject.getString("Memb_Name");
-                        sessionManeger.createSession(userId,userName,email,mobileNo);
+                        String memberId = jsonObject.getString("membercode");
+                        sessionManeger.createSession(userId,userName,email,mobileNo,memberId);
                         Intent intent=new Intent(SignInActivity.this,DashBoardActivity.class);
                         startActivity(intent);
                         finish();
@@ -193,27 +194,116 @@ public class SignInActivity extends AppCompatActivity
     }
 
 
-    private void showCustomDialog() {
+    private void showCustomDialog()
+    {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.forgot_password);
         dialog.setCancelable(true);
+        final TextInputEditText textInputEditTextEmail;
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        textInputEditTextEmail = (TextInputEditText) dialog.findViewById(R.id.tiet_password_forgot);
 
-
-        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), ((AppCompatButton) v).getText().toString() + " Clicked", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+            public void onClick(View v)
+            {
+                String forgotEmail = textInputEditTextEmail.getText().toString();
+                if (forgotEmail.equals(""))
+                {
+                    Toast.makeText(SignInActivity.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    forgotPassword(forgotEmail);
+                    dialog.dismiss();
+                }
             }
         });
 
         dialog.show();
         dialog.getWindow().setAttributes(lp);
+    }
+
+
+    public void forgotPassword(final String userId)
+    {
+        progressBar.setVisibility(View.VISIBLE);
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
+        String url = Constant.URL+"ForgotPassword?UserID="+userId;
+        StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    if (status.equals("SUCCESS"))
+                    {
+                        String userId = jsonObject.getString("username");
+                        Toast.makeText(SignInActivity.this,"Link Send to your register email id",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(SignInActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+                //This code is executed if there is an error.
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+
+          /*  protected Map<String, String> getParams()
+            {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("MobileNo", Mobileno);
+                MyData.put("Email", EmailId);
+                MyData.put("UserID",UserID);
+                MyData.put("name", name);
+                MyData.put("Password", Password);
+                MyData.put("place", place);
+                MyData.put("sponserID", sponserid);
+                MyData.put("ip_address", ip_address);
+                MyData.put("DeviceType", devicetype);
+                return MyData;
+            }*/
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
     }
 }

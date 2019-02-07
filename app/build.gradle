@@ -40,6 +40,8 @@ dependencies
             implementation 'com.google.android.gms:play-services-places:15.0.1'
             implementation 'com.mcxiaoke.volley:library:1.0.19'
             implementation 'de.hdodenhof:circleimageview:2.1.0'   //-------------Circul Image
+            implementation 'com.intuit.sdp:sdp-android:1.0.4'
+
 
 
         }
