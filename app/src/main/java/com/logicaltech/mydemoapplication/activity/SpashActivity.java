@@ -11,11 +11,16 @@ import android.widget.LinearLayout;
 import com.logicaltech.mydemoapplication.MainActivity;
 import com.logicaltech.mydemoapplication.R;
 
+import java.util.HashMap;
+
+import utility.SessionManeger;
+
 public class SpashActivity extends AppCompatActivity
 {
     Handler handler;
     LinearLayout li1,li2;
     Animation uptodown,downtoup;
+    SessionManeger sessionManeger;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -23,6 +28,7 @@ public class SpashActivity extends AppCompatActivity
         setContentView(R.layout.activity_spash);
         li1 = (LinearLayout) findViewById(R.id.li1);
         li2 = (LinearLayout) findViewById(R.id.li2);
+        sessionManeger = new SessionManeger(getApplicationContext());
 
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
@@ -35,10 +41,19 @@ public class SpashActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Intent intent=new Intent(SpashActivity.this,DashBoardActivity.class);
-                startActivity(intent);
-                finish();
+                if (sessionManeger.checkLogin())
+                {
+                    Intent intent=new Intent(SpashActivity.this,SignInActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else
+                {
+                    Intent intent=new Intent(SpashActivity.this,DashBoardActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
-        },3000);
+        },1000);
     }
 }

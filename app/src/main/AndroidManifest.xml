@@ -39,7 +39,8 @@
         <activity android:name=".activity.RechargeActivity" />
         <activity android:name=".activity.ElectricityRechargeActivity" />
         <activity android:name=".activity.FlightBookActivity" />
-        <activity android:name=".activity.SignInActivity"></activity>
+        <activity android:name=".activity.SignInActivity" />
+        <activity android:name=".activity.SignupActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.logicaltech.mydemoapplication.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,16 +17,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.logicaltech.mydemoapplication.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.DrawableBanner;
 import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
+import utility.SessionManeger;
 
 public class DashBoardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -32,6 +37,8 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
     List<Banner> banners=new ArrayList<>();
     LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking;
     Intent intent;
+    SessionManeger sessionManeger;
+    TextView TextViewUserName,TextViewUserEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,6 +46,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_dash_board);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        sessionManeger = new SessionManeger(getApplicationContext());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -47,6 +55,33 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View hView = navigationView.getHeaderView(0);
+        Menu nav_Menu = navigationView.getMenu();
+
+        TextViewUserName = (TextView)  hView.findViewById(R.id.textviewprofilename);
+        TextViewUserEmail = (TextView)  hView.findViewById(R.id.textviewprofileemailid);
+
+        if (sessionManeger.checkLogin())
+        {
+            nav_Menu.findItem(R.id.nav_logout).setVisible(false);
+           /* nav_Menu.findItem(R.id.nav_profile).setVisible(false);
+            button_nav_signup.setVisibility(View.VISIBLE);*/
+        }
+        else
+        {
+            HashMap<String, String> hashMap = sessionManeger.getUserDetails();
+            String userId = hashMap.get(SessionManeger.KEY_ID);
+            String userMobile = hashMap.get(SessionManeger.KEY_PHONE);
+            String userName = hashMap.get(SessionManeger.KEY_NAME);
+            String userEmail = hashMap.get(SessionManeger.KEY_EMAIL);
+          //  button_nav_signup.setVisibility(View.GONE);
+            TextViewUserName.setVisibility(View.VISIBLE);
+            TextViewUserEmail.setVisibility(View.VISIBLE);
+            TextViewUserName.setText(userName);
+            TextViewUserEmail.setText(userEmail);
+
+        }
+
 
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
         CV_Mobile_Reacharge = (LinearLayout) findViewById(R.id.linearlayout_mobile_reacharge);
@@ -123,13 +158,19 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera)
+        {
+            intent = new Intent(this,SignInActivity.class);
+            startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            intent = new Intent(this,SignupActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -137,8 +178,18 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout)
+        {
+            new AlertDialog.Builder(DashBoardActivity.this)
+                    .setMessage("Are you sure you want to logout?").setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            sessionManeger.logoutUser();
+                            finish();
+                        }
+                    }).setNegativeButton("No", null).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
