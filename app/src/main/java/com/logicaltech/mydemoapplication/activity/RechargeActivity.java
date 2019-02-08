@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -33,6 +34,7 @@ public class RechargeActivity extends AppCompatActivity
     private ProgressBar progress_bar;
     private View parent_view;
     TextInputEditText textInputEditTextMobileNumber;
+    TextInputLayout textinputlayout_opertor;
     private static final int PERMISSION_REQUEST_CONTACT=0;
 
     @Override
@@ -43,6 +45,7 @@ public class RechargeActivity extends AppCompatActivity
         IV_Back_Arrow = (ImageView) findViewById(R.id.reacharg_back_arrow);
         btn_recharge = (Button) findViewById(R.id.processrecharge);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
+        textinputlayout_opertor = (TextInputLayout)findViewById(R.id.textinputlayout_opertor);
         parent_view = findViewById(android.R.id.content);
         IV_Contact_Access = (ImageView) findViewById(R.id.contact_access);
         textInputEditTextMobileNumber = (TextInputEditText) findViewById(R.id.et_mobilenumber);
@@ -71,6 +74,16 @@ public class RechargeActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 askForContactPermission();
+            }
+        });
+
+        textinputlayout_opertor.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(RechargeActivity.this,OperatorTypeActivity.class);
+                startActivity(intent);
             }
         });
     }

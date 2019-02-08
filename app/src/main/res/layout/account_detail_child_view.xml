@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/box_shadow"
+    android:layout_margin="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_account_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_view_account_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:text=" Account Info"/>
+
+        <TextView
+            android:id="@+id/text_view_account_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Account Number"
+            android:paddingLeft="@dimen/_10sdp"
+            android:layout_below="@+id/text_view_account_name"/>
+        <TextView
+            android:id="@+id/text_view_bank_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_10sdp"
+            android:layout_below="@+id/text_view_account_number"
+            android:layout_marginTop="@dimen/_10sdp"/>
+        <TextView
+            android:id="@+id/text_view_branch_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_10sdp"
+            android:layout_below="@+id/text_view_bank_name"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/text_view_mobile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_below="@+id/text_view_branch_name"
+            android:layout_marginBottom="@dimen/_10sdp"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

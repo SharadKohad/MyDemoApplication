@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ProfileDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        android:background="@color/colorPrimary">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_view_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/profile_icon" />
+
+        <ImageView
+            android:id="@+id/img_back_arrow_profile_detail"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_10sdp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_Account_Setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+            <EditText
+                android:id="@+id/EditText_ProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center|left"
+                android:inputType="text"
+                android:textColor="@color/dim_grey"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+            <EditText
+                android:id="@+id/EditText_ProfileEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/dim_grey"
+                android:gravity="center|left"
+                android:textSize="@dimen/_12sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_mobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+
+            <EditText
+                android:id="@+id/EditText_PhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center|left"
+                android:inputType="number"
+                android:textColor="@color/dim_grey"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_usercity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+            <EditText
+                android:id="@+id/EditText_City"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center|left"
+                android:inputType="text"
+                android:textColor="@color/dim_grey"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_profile_save"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Save"
+                android:textSize="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/_30sdp"/>
+
+            <Button
+                android:id="@+id/button_change_password"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Change Password"
+                android:textSize="@dimen/_8sdp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

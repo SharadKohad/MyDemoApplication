@@ -41,7 +41,13 @@
         <activity android:name=".activity.FlightBookActivity" />
         <activity android:name=".activity.SignInActivity" />
         <activity android:name=".activity.SignupActivity" />
-        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.ProfileDetailActivity" />
+        <activity android:name=".activity.ChangePasswordActivity" />
+        <activity android:name=".activity.AccountListActivity" />
+        <activity android:name=".activity.AccountDetailActivity" />
+        <activity android:name=".activity.RechargeHistoryActivity" />
+        <activity android:name=".activity.OperatorTypeActivity"></activity>
     </application>
 
 </manifest>

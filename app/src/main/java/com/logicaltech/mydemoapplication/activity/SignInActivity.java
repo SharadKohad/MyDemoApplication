@@ -133,7 +133,9 @@ public class SignInActivity extends AppCompatActivity
                         String mobileNo = jsonObject.getString("Mobile_No");
                         String userName = jsonObject.getString("Memb_Name");
                         String memberId = jsonObject.getString("membercode");
-                        sessionManeger.createSession(userId,userName,email,mobileNo,memberId);
+                        Constant.MEMBER_ID = memberId;
+                        String city = jsonObject.getString("City");
+                        sessionManeger.createSession(userId,userName,email,mobileNo,memberId,city);
                         Intent intent=new Intent(SignInActivity.this,DashBoardActivity.class);
                         startActivity(intent);
                         finish();
