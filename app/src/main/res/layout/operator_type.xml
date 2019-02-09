@@ -4,22 +4,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="@dimen/_15sdp"
+    android:layout_marginLeft="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_5sdp"
     android:background="@drawable/box_shadow">
 
     <LinearLayout
         android:id="@+id/linear_layout_operator_type"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_140sdp"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_operator_type_image"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_15sdp"
             android:layout_gravity="center"/>
 
         <TextView

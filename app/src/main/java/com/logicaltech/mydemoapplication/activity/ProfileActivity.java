@@ -14,7 +14,7 @@ import utility.Constant;
 public class ProfileActivity extends AppCompatActivity
 {
     TextView TV_total_Balance;
-    LinearLayout LinearLayout_ViewProfile,LinearLayout_AccountDetail,LinearLayout_Recharge_History;
+    LinearLayout LinearLayout_ViewProfile,LinearLayout_AccountDetail,LinearLayout_Recharge_History,LinearLayout_Withdrawal_History;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -24,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity
         LinearLayout_ViewProfile = (LinearLayout) findViewById(R.id.linear_layout_view_profile);
         LinearLayout_AccountDetail = (LinearLayout) findViewById(R.id.linear_layout_Account_list);
         LinearLayout_Recharge_History = (LinearLayout) findViewById(R.id.linear_layout_recharge_history);
+        LinearLayout_Withdrawal_History = (LinearLayout) findViewById(R.id.linear_layout_withdrawal_history);
         TV_total_Balance.setText(Constant.TOTAL_BALANCE);
 
         LinearLayout_ViewProfile.setOnClickListener(new View.OnClickListener()
@@ -52,6 +53,16 @@ public class ProfileActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(ProfileActivity.this,RechargeHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LinearLayout_Withdrawal_History.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(ProfileActivity.this,WithdrawalHistActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.logicaltech.mydemoapplication.R;
+import com.logicaltech.mydemoapplication.activity.RechargeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,7 +28,6 @@ public class Operator_Adapter extends RecyclerView.Adapter<Operator_Adapter.Recy
         this.orderList = orderList;
         mContext = context;
     }
-
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -37,32 +38,22 @@ public class Operator_Adapter extends RecyclerView.Adapter<Operator_Adapter.Recy
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position)
     {
         final Operator_Model account_model = orderList.get(position);
-
         holder.TV_Operator_Type.setText(account_model.getOperate());
         Picasso.with(mContext).load(account_model.getIcon()).placeholder(R.drawable.profile_icon).into(holder.circleImageViewOperatorType);
 
-      /*  holder.TV_Branch_Name.setText("Bank Name: "+account_model.getBk_branch());
-        holder.TV_Mobile_Name.setText("Mobile No"+account_model.getBank_mobile_no());*/
 
-      /*  holder.relativeLayout_Account_List.setOnClickListener(new View.OnClickListener()
+        holder.LinearLayout_Operator_Type.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(mContext,AccountDetailActivity.class);
+                Intent intent=new Intent(mContext,RechargeActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                 intent.putExtra("token","1");
-                intent.putExtra("accoun_name",orderList.get(position).getAc_name());
-                intent.putExtra("accoun_no",orderList.get(position).getAc_no());
-                intent.putExtra("accoun_type",orderList.get(position).getAc_type());
-                intent.putExtra("bank_name",orderList.get(position).getBk_name());
-                intent.putExtra("branck_name",orderList.get(position).getBk_branch());
-                intent.putExtra("ifsc_code",orderList.get(position).getBk_ifsc());
-                intent.putExtra("mobile_no",orderList.get(position).getBank_mobile_no());
-
+                intent.putExtra("operator",orderList.get(position).getOperate());
                 mContext.getApplicationContext().startActivity(intent);
             }
-        });*/
+        });
     }
     @Override
     public int getItemCount()

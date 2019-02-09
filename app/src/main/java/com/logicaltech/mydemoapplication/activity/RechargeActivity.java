@@ -24,8 +24,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.logicaltech.mydemoapplication.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import utility.Constant;
+import utility.SessionManeger;
 
 public class RechargeActivity extends AppCompatActivity
 {
@@ -36,6 +56,9 @@ public class RechargeActivity extends AppCompatActivity
     TextInputEditText textInputEditTextMobileNumber;
     TextInputLayout textinputlayout_opertor;
     private static final int PERMISSION_REQUEST_CONTACT=0;
+    TextInputEditText textInputEditText_operator,TextInputEditText_Amount;
+    String token="0",memberId;
+    SessionManeger sessionManeger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,19 +66,33 @@ public class RechargeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge);
         IV_Back_Arrow = (ImageView) findViewById(R.id.reacharg_back_arrow);
-        btn_recharge = (Button) findViewById(R.id.processrecharge);
+        btn_recharge = (Button) findViewById(R.id.btn_processrecharge);
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         textinputlayout_opertor = (TextInputLayout)findViewById(R.id.textinputlayout_opertor);
         parent_view = findViewById(android.R.id.content);
         IV_Contact_Access = (ImageView) findViewById(R.id.contact_access);
         textInputEditTextMobileNumber = (TextInputEditText) findViewById(R.id.et_mobilenumber);
+        textInputEditText_operator =(TextInputEditText) findViewById(R.id.tiet_operator);
+        TextInputEditText_Amount = (TextInputEditText) findViewById(R.id.textinputedittext_amount);
+        sessionManeger = new SessionManeger(getApplicationContext());
+
+        HashMap<String, String> hashMap = sessionManeger.getUserDetails();
+        memberId = hashMap.get(SessionManeger.MEMBER_ID);
+
+        token = getIntent().getExtras().getString("token");
+
+        if (token.equals("1"))
+        {
+            textInputEditText_operator.setText(getIntent().getExtras().getString("operator"));
+        }
 
         IV_Back_Arrow.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                finish();
+                Intent intent = new Intent(RechargeActivity.this,DashBoardActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -83,6 +120,7 @@ public class RechargeActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(RechargeActivity.this,OperatorTypeActivity.class);
+                intent.putExtra("operatortype","1");
                 startActivity(intent);
             }
         });
@@ -130,10 +168,10 @@ public class RechargeActivity extends AppCompatActivity
         }
     }
 
-    private void searchAction() {
+    private void searchAction()
+    {
         progress_bar.setVisibility(View.VISIBLE);
         btn_recharge.setAlpha(0f);
-
         new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -141,7 +179,7 @@ public class RechargeActivity extends AppCompatActivity
             {
                 progress_bar.setVisibility(View.GONE);
                 btn_recharge.setAlpha(1f);
-                Snackbar.make(parent_view, "Login data submitted", Snackbar.LENGTH_SHORT).show();
+                registration(memberId,"1",textInputEditText_operator.getText().toString(),TextInputEditText_Amount.getText().toString(),textInputEditTextMobileNumber.getText().toString());
             }
         }, 1000);
     }
@@ -167,6 +205,65 @@ public class RechargeActivity extends AppCompatActivity
         {
             getContact();
         }
+    }
+
+
+    public void registration(final String member_Id, final String recharge_type, final String operator, final String amount, final String number)
+    {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        String url = Constant.URL+"addRecharge?MemberID="+member_Id+"&RechargeType="+recharge_type+"&Operator="+operator+"&Amount="+amount+"&Number="+number+"&DeviceType=Android";
+        StringRequest MyStringRequest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>()
+        {
+            @Override
+            public void onResponse(String response)
+            {
+                try
+                {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String status = jsonObject.getString("status");
+                    if (status.equals("SUCCESS"))
+                    {
+                        Intent intent = new Intent(RechargeActivity.this,DashBoardActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(RechargeActivity.this,""+status,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //This code is executed if there is an error.
+                String message= "";
+                if (error instanceof ServerError)
+                {
+                    message = "The server could not be found. Please try again after some time!!";
+                }
+                else if (error instanceof TimeoutError)
+                {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                }
+                System.out.println("error........"+error);
+                //This code is executed if there is an error.
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json");
+                return headers;
+            }
+        };
+        MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyRequestQueue.add(MyStringRequest);
     }
 
 }

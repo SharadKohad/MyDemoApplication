@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.OperatorTypeActivity">
+    tools:context=".activity.WithdrawalHistActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:background="@color/colorPrimary">
 
         <ImageView
-            android:id="@+id/img_back_arrow_operator_list"
+            android:id="@+id/img_back_arrow_withdraw_history"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:src="@drawable/ic_arrow_back"
@@ -23,9 +23,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Operator Type"
+            android:text="Withdraw History"
             android:textColor="@color/white"
-            android:layout_toRightOf="@+id/img_back_arrow_operator_list"
+            android:layout_toRightOf="@+id/img_back_arrow_withdraw_history"
             android:layout_marginTop="@dimen/_11sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"/>
@@ -38,12 +38,23 @@
         android:layout_marginTop="@dimen/_10sdp">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_opretor_type"
+            android:id="@+id/recycler_view_withdrawl_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_go_home"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/btn_rounded_green"
+        android:text="Recharge"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_8sdp" />
 
 </LinearLayout>

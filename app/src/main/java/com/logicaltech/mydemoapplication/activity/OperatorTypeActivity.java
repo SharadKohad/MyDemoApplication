@@ -1,9 +1,12 @@
 package com.logicaltech.mydemoapplication.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -35,23 +38,37 @@ public class OperatorTypeActivity extends AppCompatActivity
     RecyclerView RecyclerView_Operator_Model;
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<Operator_Model> arrayList =new ArrayList<>();
+    ImageView imageView_Back_Arrow;
+    String operatortype ;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operator_type);
         RecyclerView_Operator_Model = (RecyclerView) findViewById(R.id.recycler_view_opretor_type);
+        imageView_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_operator_list);
         mGridLayoutManagerBrand = new GridLayoutManager(OperatorTypeActivity.this, 2);
         RecyclerView_Operator_Model.setLayoutManager(mGridLayoutManagerBrand);
 
-        operatorType();
+        imageView_Back_Arrow.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
+
+        operatortype = getIntent().getExtras().getString("operatortype");
+
+        operatorType(operatortype);
     }
 
-    public void operatorType()
+    public void operatorType(final String operatortype)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
-        String url = Constant.URL+"getOperatorByType?RechargeType=1";
+        String url = Constant.URL+"getOperatorByType?RechargeType="+operatortype;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override

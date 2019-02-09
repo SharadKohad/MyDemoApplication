@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_250sdp"
+    android:background="@drawable/box_shadow">
+
+    <ImageView
+        android:id="@+id/imageview_close_dialog"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/ic_close_black"
+        android:padding="@dimen/_15sdp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mobile No List"
+        android:layout_toRightOf="@+id/imageview_close_dialog"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_mobile_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageview_close_dialog">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

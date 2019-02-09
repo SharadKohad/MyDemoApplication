@@ -51,7 +51,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 {
     BannerSlider bannerSlider;
     List<Banner> banners=new ArrayList<>();
-    LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking;
+    LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking,LL_Withdraw;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail;
@@ -105,6 +105,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         CV_Mobile_Reacharge = (LinearLayout) findViewById(R.id.linearlayout_mobile_reacharge);
         CV_Eletricity_Recharge = (LinearLayout) findViewById(R.id.linear_layout_electricity);
         LL_Flight_Booking = (LinearLayout) findViewById(R.id.linear_layout_flightbooking);
+        LL_Withdraw = (LinearLayout) findViewById(R.id.linear_layout_withdraw);
         //add banner using resource drawable
         banners.add(new DrawableBanner(R.drawable.slider1));
         banners.add(new DrawableBanner(R.drawable.slider2));
@@ -117,6 +118,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             public void onClick(View v)
             {
                 intent = new Intent(DashBoardActivity.this,RechargeActivity.class);
+                intent.putExtra("token","0");
                 startActivity(intent);
             }
         });
@@ -137,6 +139,16 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             public void onClick(View v)
             {
                 intent = new Intent(DashBoardActivity.this,FlightBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LL_Withdraw.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent = new Intent(DashBoardActivity.this,WithdrawActivity.class);
                 startActivity(intent);
             }
         });
