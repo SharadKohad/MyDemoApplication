@@ -77,12 +77,11 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
         TextViewUserName = (TextView)  hView.findViewById(R.id.textviewprofilename);
         TextViewUserEmail = (TextView)  hView.findViewById(R.id.textviewprofileemailid);
+        init();
 
         if (sessionManeger.checkLogin())
         {
             nav_Menu.findItem(R.id.nav_logout).setVisible(false);
-           /* nav_Menu.findItem(R.id.nav_profile).setVisible(false);
-            button_nav_signup.setVisibility(View.VISIBLE);*/
         }
         else
         {
@@ -100,17 +99,22 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             dashBoardData(memberId);
         }
 
+        //add banner using resource drawable
+        banners.add(new DrawableBanner(R.drawable.slider1));
+        banners.add(new DrawableBanner(R.drawable.slider2));
+        banners.add(new DrawableBanner(R.drawable.slider3));
+        banners.add(new DrawableBanner(R.drawable.slider4));
+        banners.add(new DrawableBanner(R.drawable.slider5));
+        bannerSlider.setBanners(banners);
+    }
 
+    public void init()
+    {
         bannerSlider = (BannerSlider) findViewById(R.id.banner_slider1);
         CV_Mobile_Reacharge = (LinearLayout) findViewById(R.id.linearlayout_mobile_reacharge);
         CV_Eletricity_Recharge = (LinearLayout) findViewById(R.id.linear_layout_electricity);
         LL_Flight_Booking = (LinearLayout) findViewById(R.id.linear_layout_flightbooking);
         LL_Withdraw = (LinearLayout) findViewById(R.id.linear_layout_withdraw);
-        //add banner using resource drawable
-        banners.add(new DrawableBanner(R.drawable.slider1));
-        banners.add(new DrawableBanner(R.drawable.slider2));
-        banners.add(new DrawableBanner(R.drawable.slider3));
-        bannerSlider.setBanners(banners);
 
         CV_Mobile_Reacharge.setOnClickListener(new View.OnClickListener()
         {
@@ -188,22 +192,25 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera)
+        if (id == R.id.nav_profile)
         {
-            intent = new Intent(this,SignInActivity.class);
+            intent = new Intent(this,ProfileActivity.class);
             startActivity(intent);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        }
+        else if (id == R.id.nav_gallery)
+        {
             intent = new Intent(this,SignupActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow)
+        {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_manage)
+        {
 
         } else if (id == R.id.nav_share)
         {
@@ -232,7 +239,6 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
     public void dashBoardData(final String memberId)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getDashboardData?MemberID="+memberId;
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>()
         {
@@ -287,21 +293,6 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
                 headers.put("Content-Type","application/json");
                 return headers;
             }
-
-          /*  protected Map<String, String> getParams()
-            {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("MobileNo", Mobileno);
-                MyData.put("Email", EmailId);
-                MyData.put("UserID",UserID);
-                MyData.put("name", name);
-                MyData.put("Password", Password);
-                MyData.put("place", place);
-                MyData.put("sponserID", sponserid);
-                MyData.put("ip_address", ip_address);
-                MyData.put("DeviceType", devicetype);
-                return MyData;
-            }*/
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);

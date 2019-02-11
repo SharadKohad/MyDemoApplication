@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -87,7 +88,6 @@ public class AccountListActivity extends AppCompatActivity {
     public void AccountList(final String memberId,final String mobileNo)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"getBankAccByMobileNo?MemberID="+memberId+"&mobile="+mobileNo;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
@@ -96,8 +96,6 @@ public class AccountListActivity extends AppCompatActivity {
             {
                 try
                 {
-                   // JSONObject jsonObject = new JSONObject(response);
-                  //  JsonArray jsonArray = new JsonArray(response);
                     arrayList.clear();
                     for (int i = 0; i < response.length(); i++)
                     {
@@ -115,7 +113,6 @@ public class AccountListActivity extends AppCompatActivity {
                         String beneficiaryid = jsonObject2.getString("beneficiaryid");
                         String beneficiaryid_corporate = jsonObject2.getString("beneficiaryid_corporate");
                         String agent_id = jsonObject2.getString("agent_id");
-
 
                         Account_Model model = new Account_Model();
                         model.setAc_no(ac_no);

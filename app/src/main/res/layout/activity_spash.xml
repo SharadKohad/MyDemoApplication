@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:text="Welcome to Uddeshya"
+            android:text="Welcome to Zenpay"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             android:textStyle="bold" />

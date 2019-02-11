@@ -14,9 +14,9 @@
         android:padding="@dimen/_15sdp"/>
 
     <TextView
+        android:id="@+id/TV_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mobile No List"
         android:layout_toRightOf="@+id/imageview_close_dialog"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_15sdp"

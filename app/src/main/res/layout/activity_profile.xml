@@ -13,6 +13,13 @@
         android:layout_height="210dp"
         android:background="@color/colorPrimary">
 
+        <ImageView
+            android:id="@+id/img_back_arrow_profile"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_12sdp"/>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_view_profile"
             android:layout_width="80dp"
@@ -33,7 +40,7 @@
 
 
         <Button
-            android:id="@+id/button_friend_invite"
+            android:id="@+id/button_logout"
             android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_below="@+id/tv_totalbalance"

@@ -38,7 +38,7 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
         holder.TV_AccountName.setText("Account Name: "+account_model.getAmount());
         holder.TV_AccountNumber.setText("Account No: "+account_model.getCharges());
         holder.TV_BankName.setText("Branch Name: "+account_model.getDate());
-        holder.TV_Branch_Name.setText("Bank Name: "+account_model.getPaid_amount());
+     //   holder.TV_Branch_Name.setText("Bank Name: "+account_model.getPaid_amount());
         holder.TV_Mobile_Name.setText("Mobile No"+account_model.getTds());
 
       /*  holder.relativeLayout_Account_List.setOnClickListener(new View.OnClickListener()
@@ -68,7 +68,7 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
     }
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView TV_AccountName,TV_AccountNumber,TV_BankName,TV_Branch_Name,TV_Mobile_Name;
+        TextView TV_AccountName,TV_AccountNumber,TV_BankName,TV_Mobile_Name;
         RelativeLayout relativeLayout_Account_List;
         public RecyclerViewHolder(View itemView)
         {
@@ -76,7 +76,7 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
             TV_AccountName = (TextView) itemView.findViewById(R.id.text_view_account_name);
             TV_AccountNumber = (TextView) itemView.findViewById(R.id.text_view_account_number);
             TV_BankName = (TextView) itemView.findViewById(R.id.text_view_bank_name);
-            TV_Branch_Name = (TextView) itemView.findViewById(R.id.text_view_branch_name);
+       //     TV_Branch_Name = (TextView) itemView.findViewById(R.id.text_view_branch_name);
             TV_Mobile_Name = (TextView) itemView.findViewById(R.id.text_view_mobile_name);
             relativeLayout_Account_List = (RelativeLayout)itemView.findViewById(R.id.relative_layout_account_list);
         }

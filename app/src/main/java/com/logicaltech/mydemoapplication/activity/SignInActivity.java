@@ -46,6 +46,9 @@ public class SignInActivity extends AppCompatActivity
     ProgressBar progressBar;
     SessionManeger sessionManeger;
     TextView TVforgotpassword;
+    Dialog dialog;
+    WindowManager.LayoutParams lp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,8 +57,7 @@ public class SignInActivity extends AppCompatActivity
         sessionManeger = new SessionManeger(getApplicationContext());
         init();
     }
-    public void init()
-    {
+    public void init() {
         linearLayoutSignUp = (LinearLayout)findViewById(R.id.llsign_up_for_account);
         TIET_email_id = (TextInputEditText)findViewById(R.id.tiet_userid_signin);
         TIET_password = (TextInputEditText)findViewById(R.id.tiet_password_signin);
@@ -101,7 +103,7 @@ public class SignInActivity extends AppCompatActivity
                 String password = TIET_password.getText().toString();
                 if (password.equals(""))
                 {
-                    Toast.makeText(this,"Please enter valid password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -142,18 +144,18 @@ public class SignInActivity extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(SignInActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this,""+status,Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (JSONException e)
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error)
+            {
                 //This code is executed if there is an error.
                 String message= "";
                 if (error instanceof ServerError)
@@ -175,42 +177,26 @@ public class SignInActivity extends AppCompatActivity
                 headers.put("Content-Type","application/json");
                 return headers;
             }
-
-          /*  protected Map<String, String> getParams()
-            {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("MobileNo", Mobileno);
-                MyData.put("Email", EmailId);
-                MyData.put("UserID",UserID);
-                MyData.put("name", name);
-                MyData.put("Password", Password);
-                MyData.put("place", place);
-                MyData.put("sponserID", sponserid);
-                MyData.put("ip_address", ip_address);
-                MyData.put("DeviceType", devicetype);
-                return MyData;
-            }*/
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);
     }
 
-
     private void showCustomDialog()
     {
-        final Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.forgot_password);
         dialog.setCancelable(true);
         final TextInputEditText textInputEditTextEmail;
 
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         textInputEditTextEmail = (TextInputEditText) dialog.findViewById(R.id.tiet_password_forgot);
 
-        ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener()
+        ((AppCompatButton) dialog.findViewById(R.id.btn_forgot_password)).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -223,7 +209,6 @@ public class SignInActivity extends AppCompatActivity
                 else
                 {
                     forgotPassword(forgotEmail);
-                    dialog.dismiss();
                 }
             }
         });
@@ -232,12 +217,9 @@ public class SignInActivity extends AppCompatActivity
         dialog.getWindow().setAttributes(lp);
     }
 
-
     public void forgotPassword(final String userId)
     {
-        progressBar.setVisibility(View.VISIBLE);
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = Constant.URL+"ForgotPassword?UserID="+userId;
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>()
         {
@@ -246,22 +228,21 @@ public class SignInActivity extends AppCompatActivity
             {
                 try
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     if (status.equals("SUCCESS"))
                     {
                         String userId = jsonObject.getString("username");
                         Toast.makeText(SignInActivity.this,"Link Send to your register email id",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                     else
                     {
-                        Toast.makeText(SignInActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this,""+status,Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (JSONException e)
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 }
             }
@@ -283,27 +264,13 @@ public class SignInActivity extends AppCompatActivity
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Accept","application/json");
                 headers.put("Content-Type","application/json");
                 return headers;
             }
-
-          /*  protected Map<String, String> getParams()
-            {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("MobileNo", Mobileno);
-                MyData.put("Email", EmailId);
-                MyData.put("UserID",UserID);
-                MyData.put("name", name);
-                MyData.put("Password", Password);
-                MyData.put("place", place);
-                MyData.put("sponserID", sponserid);
-                MyData.put("ip_address", ip_address);
-                MyData.put("DeviceType", devicetype);
-                return MyData;
-            }*/
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);

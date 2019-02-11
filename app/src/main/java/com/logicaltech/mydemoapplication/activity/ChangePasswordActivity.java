@@ -33,7 +33,7 @@ public class ChangePasswordActivity extends AppCompatActivity
 {
     ImageView IV_Back_Arrow;
     Button btn_save_password;
-    EditText ET_Old_Password,ET_NewPassword;
+    EditText ET_Old_Password,ET_NewPassword,ET_ConformPaaword;
     SessionManeger sessionManeger;
     String memberId;
     @Override
@@ -46,6 +46,7 @@ public class ChangePasswordActivity extends AppCompatActivity
         btn_save_password = (Button) findViewById(R.id.button_forgotpassword_save);
         ET_Old_Password = (EditText) findViewById(R.id.edit_text_old_password);
         ET_NewPassword = (EditText) findViewById(R.id.edit_text_new_password);
+        ET_ConformPaaword = (EditText) findViewById(R.id.edit_text_new_password_conform);
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
 
@@ -65,9 +66,44 @@ public class ChangePasswordActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                changePassword(memberId,ET_Old_Password.getText().toString(),ET_NewPassword.getText().toString());
+                changePassword();
             }
         });
+    }
+    public void changePassword()
+    {
+        String oldPassword = ET_Old_Password.getText().toString();
+        if (oldPassword.equals(""))
+        {
+            Toast.makeText(ChangePasswordActivity.this,"Please enter the Old Password",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            String newPassword = ET_NewPassword.getText().toString();
+            if (newPassword.equals(""))
+            {
+                Toast.makeText(ChangePasswordActivity.this,"Please enter the New Password",Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                String conformPassword = ET_ConformPaaword.getText().toString();
+                if (conformPassword.equals(""))
+                {
+                    Toast.makeText(ChangePasswordActivity.this,"Password don,t match",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if (newPassword.equals(conformPassword))
+                    {
+                        changePassword(memberId,oldPassword,newPassword);
+                    }
+                    else
+                    {
+                        Toast.makeText(ChangePasswordActivity.this,"Password don,t match",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
     }
 
     public void changePassword(final String memberId,final String oldPassword,final String newPawwrod)

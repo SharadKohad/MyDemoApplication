@@ -41,11 +41,10 @@ public class Account_Adapter extends RecyclerView.Adapter<Account_Adapter.Recycl
     {
         final Account_Model account_model = orderList.get(position);
 
-        holder.TV_AccountName.setText("Account Name: "+account_model.getAc_name());
-        holder.TV_AccountNumber.setText("Account No: "+account_model.getAc_no());
-        holder.TV_BankName.setText("Branch Name: "+account_model.getBk_name());
-        holder.TV_Branch_Name.setText("Bank Name: "+account_model.getBk_branch());
-        holder.TV_Mobile_Name.setText("Mobile No"+account_model.getBank_mobile_no());
+        holder.TV_AccountName.setText(""+account_model.getAc_name());
+        holder.TV_AccountNumber.setText(""+account_model.getAc_no());
+        holder.TV_BankName.setText(""+account_model.getBk_name());
+        holder.TV_Mobile_Name.setText(""+account_model.getBank_mobile_no());
 
         holder.relativeLayout_Account_List.setOnClickListener(new View.OnClickListener()
         {
@@ -74,15 +73,14 @@ public class Account_Adapter extends RecyclerView.Adapter<Account_Adapter.Recycl
     }
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView TV_AccountName,TV_AccountNumber,TV_BankName,TV_Branch_Name,TV_Mobile_Name;
+        TextView TV_AccountName,TV_AccountNumber,TV_BankName,TV_Mobile_Name;
         RelativeLayout relativeLayout_Account_List;
         public RecyclerViewHolder(View itemView)
         {
             super(itemView);
-            TV_AccountName = (TextView) itemView.findViewById(R.id.text_view_account_name);
+            TV_AccountName = (TextView) itemView.findViewById(R.id.text_view_account_name1);
             TV_AccountNumber = (TextView) itemView.findViewById(R.id.text_view_account_number);
             TV_BankName = (TextView) itemView.findViewById(R.id.text_view_bank_name);
-            TV_Branch_Name = (TextView) itemView.findViewById(R.id.text_view_branch_name);
             TV_Mobile_Name = (TextView) itemView.findViewById(R.id.text_view_mobile_name);
             relativeLayout_Account_List = (RelativeLayout)itemView.findViewById(R.id.relative_layout_account_list);
         }

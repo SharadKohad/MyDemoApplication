@@ -44,13 +44,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_profile_detail);
         sessionManeger = new SessionManeger(getApplicationContext());
 
-        ET_Name = (EditText) findViewById(R.id.EditText_ProfileName);
-        ET_Email = (EditText) findViewById(R.id.EditText_ProfileEmailId);
-        ET_MobileNo = (EditText) findViewById(R.id.EditText_PhoneNumber);
-        ET_City = (EditText) findViewById(R.id.EditText_City);
-        Btn_Profile_Save = (Button) findViewById(R.id.button_profile_save);
-        Btn_Change_Password = (Button) findViewById(R.id.button_change_password);
-        IV_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_profile_detail);
+        init();
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         userId = hashMap.get(SessionManeger.KEY_ID);
@@ -65,12 +59,25 @@ public class ProfileDetailActivity extends AppCompatActivity
         ET_MobileNo.setText(userMobile);
         ET_City.setText(city);
 
+
+    }
+
+    public void init()
+    {
+        ET_Name = (EditText) findViewById(R.id.EditText_ProfileName);
+        ET_Email = (EditText) findViewById(R.id.EditText_ProfileEmailId);
+        ET_MobileNo = (EditText) findViewById(R.id.EditText_PhoneNumber);
+        ET_City = (EditText) findViewById(R.id.EditText_City);
+        Btn_Profile_Save = (Button) findViewById(R.id.button_profile_save);
+        Btn_Change_Password = (Button) findViewById(R.id.button_change_password);
+        IV_Back_Arrow = (ImageView) findViewById(R.id.img_back_arrow_profile_detail);
+
         Btn_Profile_Save.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                registration(memberId,ET_Name.getText().toString(),ET_Email.getText().toString(),ET_MobileNo.getText().toString(),ET_City.getText().toString());
+                putEditProfile(memberId,ET_Name.getText().toString(),ET_Email.getText().toString(),ET_MobileNo.getText().toString(),ET_City.getText().toString());
             }
         });
 
@@ -94,7 +101,7 @@ public class ProfileDetailActivity extends AppCompatActivity
         });
     }
 
-    public void registration(final String memberId,final String name,final String emailId,final String mobileno,  final String city)
+    public void putEditProfile(final String memberId,final String name,final String emailId,final String mobileno,  final String city)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
@@ -123,9 +130,11 @@ public class ProfileDetailActivity extends AppCompatActivity
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+        }, new Response.ErrorListener()
+        { //Create an error listener to handle errors appropriately.
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error)
+            {
                 //This code is executed if there is an error.
                 String message= "";
                 if (error instanceof ServerError)
@@ -141,27 +150,13 @@ public class ProfileDetailActivity extends AppCompatActivity
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Accept","application/json");
                 headers.put("Content-Type","application/json");
                 return headers;
             }
-
-          /*  protected Map<String, String> getParams()
-            {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("MobileNo", Mobileno);
-                MyData.put("Email", EmailId);
-                MyData.put("UserID",UserID);
-                MyData.put("name", name);
-                MyData.put("Password", Password);
-                MyData.put("place", place);
-                MyData.put("sponserID", sponserid);
-                MyData.put("ip_address", ip_address);
-                MyData.put("DeviceType", devicetype);
-                return MyData;
-            }*/
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);

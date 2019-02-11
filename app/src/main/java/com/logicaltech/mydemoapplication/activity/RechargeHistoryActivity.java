@@ -30,6 +30,7 @@ import adapter.Recharge_History_Adapter;
 import model.Account_Model;
 import model.Recharge_History_Model;
 import utility.Constant;
+import utility.MySingalton;
 import utility.SessionManeger;
 
 public class RechargeHistoryActivity extends AppCompatActivity
@@ -38,7 +39,6 @@ public class RechargeHistoryActivity extends AppCompatActivity
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<Recharge_History_Model> arrayList =new ArrayList<>();
     SessionManeger sessionManeger;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,8 +56,6 @@ public class RechargeHistoryActivity extends AppCompatActivity
 
     public void rechargeHistory()
     {
-        RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        //  String url = Constant.URL+"addSignUp"; // <----enter your post url here
         String url = "http://api.zenpay.online/Api/getRechargeReport?MemberID=234658";
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
@@ -73,7 +71,7 @@ public class RechargeHistoryActivity extends AppCompatActivity
                         String Member_ID = jsonObject2.getString("Member_ID");
                         String Rech_Type = jsonObject2.getString("Rech_Type");
                         String Operator = jsonObject2.getString("Operator");
-                        String Mobile_Service_No = jsonObject2.getString("bk_branchMobile_Service_No");
+                        String Mobile_Service_No = jsonObject2.getString("Mobile_Service_No");
                         String Rech_Amount = jsonObject2.getString("Rech_Amount");
                         String request_no = jsonObject2.getString("request_no");
                         String rech_status = jsonObject2.getString("rech_status");
@@ -103,18 +101,7 @@ public class RechargeHistoryActivity extends AppCompatActivity
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                //This code is executed if there is an error.
-                String message= "";
-                if (error instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                }
-                else if (error instanceof TimeoutError)
-                {
-                    message = "Connection TimeOut! Please check your internet connection.";
-                }
-                System.out.println("error........"+error);
-                //This code is executed if there is an error.
+                System.out.println("error...");
             }
         })
         {
@@ -122,12 +109,10 @@ public class RechargeHistoryActivity extends AppCompatActivity
             public Map<String, String> getHeaders() throws AuthFailureError
             {
                 HashMap<String, String> headers = new HashMap<>();
-                headers.put("Accept","application/json");
-                headers.put("Content-Type","application/json");
                 return headers;
             }
         };
+        MySingalton.getInstance(getApplicationContext()).addRequestQueue(MyStringRequest);
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MyRequestQueue.add(MyStringRequest);
     }
 }
