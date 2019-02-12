@@ -76,8 +76,6 @@ public class OperatorTypeActivity extends AppCompatActivity
             {
                 try
                 {
-                    // JSONObject jsonObject = new JSONObject(response);
-                    //  JsonArray jsonArray = new JsonArray(response);
                     arrayList.clear();
                     for (int i = 0; i < response.length(); i++)
                     {

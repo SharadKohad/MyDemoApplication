@@ -27,7 +27,7 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_detail_child_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_withdraw_history_child, parent, false);
         return new WithDraw_History_Adapter.RecyclerViewHolder(view);
     }
     @Override
@@ -35,11 +35,11 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
     {
         final Withdraw_History_Model account_model = orderList.get(position);
 
-        holder.TV_AccountName.setText("Account Name: "+account_model.getAmount());
-        holder.TV_AccountNumber.setText("Account No: "+account_model.getCharges());
-        holder.TV_BankName.setText("Branch Name: "+account_model.getDate());
+        holder.TV_Withdraw_Date.setText(account_model.getDate());
+        holder.TV_Withdraw_amount.setText(account_model.getAmount());
+        holder.TV_Withdraw_Charges.setText(account_model.getCharges());
      //   holder.TV_Branch_Name.setText("Bank Name: "+account_model.getPaid_amount());
-        holder.TV_Mobile_Name.setText("Mobile No"+account_model.getTds());
+        holder.TV_Paid_Amount.setText(account_model.getPaid_amount());
 
       /*  holder.relativeLayout_Account_List.setOnClickListener(new View.OnClickListener()
         {
@@ -68,16 +68,15 @@ public class WithDraw_History_Adapter extends RecyclerView.Adapter<WithDraw_Hist
     }
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView TV_AccountName,TV_AccountNumber,TV_BankName,TV_Mobile_Name;
+        TextView TV_Withdraw_Date,TV_Withdraw_amount,TV_Withdraw_Charges,TV_Paid_Amount;
         RelativeLayout relativeLayout_Account_List;
         public RecyclerViewHolder(View itemView)
         {
             super(itemView);
-            TV_AccountName = (TextView) itemView.findViewById(R.id.text_view_account_name);
-            TV_AccountNumber = (TextView) itemView.findViewById(R.id.text_view_account_number);
-            TV_BankName = (TextView) itemView.findViewById(R.id.text_view_bank_name);
-       //     TV_Branch_Name = (TextView) itemView.findViewById(R.id.text_view_branch_name);
-            TV_Mobile_Name = (TextView) itemView.findViewById(R.id.text_view_mobile_name);
+            TV_Withdraw_Date = (TextView) itemView.findViewById(R.id.text_view_withdrawdate1);
+            TV_Withdraw_amount = (TextView) itemView.findViewById(R.id.text_view_withdraw_amount);
+            TV_Withdraw_Charges = (TextView) itemView.findViewById(R.id.text_view_withdraw_charges);
+            TV_Paid_Amount = (TextView) itemView.findViewById(R.id.text_view_paid_amount);
             relativeLayout_Account_List = (RelativeLayout)itemView.findViewById(R.id.relative_layout_account_list);
         }
     }

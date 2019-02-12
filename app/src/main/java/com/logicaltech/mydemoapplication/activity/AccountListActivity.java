@@ -38,8 +38,8 @@ import model.Account_Model;
 import utility.Constant;
 import utility.SessionManeger;
 
-public class AccountListActivity extends AppCompatActivity {
-
+public class AccountListActivity extends AppCompatActivity
+{
     RecyclerView RecyclerView_Account_List;
     GridLayoutManager mGridLayoutManagerBrand;
     ArrayList<Account_Model> arrayList =new ArrayList<>();
@@ -58,7 +58,7 @@ public class AccountListActivity extends AppCompatActivity {
         String userMobile = hashMap.get(SessionManeger.KEY_PHONE);
         RecyclerView_Account_List = (RecyclerView) findViewById(R.id.recycler_view_account_list);
         img_Back_Arrow_Accounts_List = (ImageView) findViewById(R.id.img_back_arrow_account_list);
-        btn_add_new_account = (Button) findViewById(R.id.button_forgotpassword_save);
+        btn_add_new_account = (Button) findViewById(R.id.button_add_bank_account);
         mGridLayoutManagerBrand = new GridLayoutManager(AccountListActivity.this, 1);
         RecyclerView_Account_List.setLayoutManager(mGridLayoutManagerBrand);
 
@@ -88,7 +88,8 @@ public class AccountListActivity extends AppCompatActivity {
     public void AccountList(final String memberId,final String mobileNo)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = Constant.URL+"getBankAccByMobileNo?MemberID="+memberId+"&mobile="+mobileNo;
+       // String url = Constant.URL+"getBankAccByMobileNo?MemberID="+memberId+"&mobile="+mobileNo;
+        String url = Constant.URL+"getAccountListByMemberID?MemberID="+memberId;
         JsonArrayRequest MyStringRequest = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>()
         {
             @Override
@@ -100,19 +101,19 @@ public class AccountListActivity extends AppCompatActivity {
                     for (int i = 0; i < response.length(); i++)
                     {
                         JSONObject jsonObject2 = response.getJSONObject(i);
-                        String ac_no = jsonObject2.getString("ac_no");
-                        String ac_name = jsonObject2.getString("ac_name");
-                        String bk_name = jsonObject2.getString("bk_name");
-                        String bk_branch = jsonObject2.getString("bk_branch");
-                        String bk_ifsc = jsonObject2.getString("bk_ifsc");
-                        String ac_type = jsonObject2.getString("ac_type");
-                        String bank_mobile_no = jsonObject2.getString("bank_mobile_no");
-                        String Pin_Code = jsonObject2.getString("Pin_Code");
-                        String Bank_Address = jsonObject2.getString("Bank_Address");
-                        String srno = jsonObject2.getString("srno");
-                        String beneficiaryid = jsonObject2.getString("beneficiaryid");
-                        String beneficiaryid_corporate = jsonObject2.getString("beneficiaryid_corporate");
-                        String agent_id = jsonObject2.getString("agent_id");
+                        String ac_no = jsonObject2.getString("accountNumber");
+                        String ac_name = jsonObject2.getString("accountName");
+                        String bk_name = jsonObject2.getString("bankName");
+                        String bk_branch = jsonObject2.getString("bankBranch");
+                        String bk_ifsc = jsonObject2.getString("bankIfsc");
+                        String ac_type = jsonObject2.getString("accountType");
+                        String bank_mobile_no = jsonObject2.getString("bankMobileNo");
+                       // String Pin_Code = jsonObject2.getString("Pin_Code");
+                       // String Bank_Address = jsonObject2.getString("Bank_Address");
+                      //  String srno = jsonObject2.getString("srno");
+                        String beneficiaryid = jsonObject2.getString("beneficiaryID");
+                        String beneficiaryid_corporate = jsonObject2.getString("beneficiaryID_Corporate");
+                        String agent_id = jsonObject2.getString("agentID");
 
                         Account_Model model = new Account_Model();
                         model.setAc_no(ac_no);
@@ -122,9 +123,9 @@ public class AccountListActivity extends AppCompatActivity {
                         model.setBk_ifsc(bk_ifsc);
                         model.setAc_type(ac_type);
                         model.setBank_mobile_no(bank_mobile_no);
-                        model.setPin_Code(Pin_Code);
-                        model.setBank_Address(Bank_Address);
-                        model.setSrno(srno);
+                      //  model.setPin_Code(Pin_Code);
+                     //   model.setBank_Address(Bank_Address);
+                     //   model.setSrno(srno);
                         model.setBeneficiaryid(beneficiaryid);
                         model.setBeneficiaryid_corporate(beneficiaryid_corporate);
                         model.setAgent_id(agent_id);
@@ -166,21 +167,6 @@ public class AccountListActivity extends AppCompatActivity {
                 headers.put("Content-Type","application/json");
                 return headers;
             }
-
-          /*  protected Map<String, String> getParams()
-            {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("MobileNo", Mobileno);
-                MyData.put("Email", EmailId);
-                MyData.put("UserID",UserID);
-                MyData.put("name", name);
-                MyData.put("Password", Password);
-                MyData.put("place", place);
-                MyData.put("sponserID", sponserid);
-                MyData.put("ip_address", ip_address);
-                MyData.put("DeviceType", devicetype);
-                return MyData;
-            }*/
         };
         MyStringRequest.setRetryPolicy(new DefaultRetryPolicy(100000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MyRequestQueue.add(MyStringRequest);

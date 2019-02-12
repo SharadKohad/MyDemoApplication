@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DTHActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/img_back_arrow_dth_recharge"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_15sdp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DTH Recharge"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/img_back_arrow_dth_recharge"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/image_view_profile">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_dth_operator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/box_shadow">
+
+
+            <TextView
+                android:id="@+id/TextView_dth_operator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center|left"
+                android:inputType="text"
+                android:textColor="@color/dim_grey"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_dth_mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+            <EditText
+                android:id="@+id/EditText_dth_operator_mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:inputType="number"
+                android:textColor="@color/dim_grey"
+                android:gravity="center|left"
+                android:hint="Enter Mobile Number"
+                android:maxLength="10"
+                android:textSize="@dimen/_12sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_dth_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/shadow_background_textview">
+
+
+
+            <EditText
+                android:id="@+id/EditText_dth_amount"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:gravity="center|left"
+                android:inputType="number"
+                android:hint="Enter Amount"
+                android:textColor="@color/dim_grey"
+                android:paddingLeft="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:background="#0000" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_dth_recharge"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/btn_rounded_green"
+                android:text="Recharge"
+                android:textSize="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/_100sdp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

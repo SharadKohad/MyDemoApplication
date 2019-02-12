@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.logicaltech.mydemoapplication.R;
+import com.logicaltech.mydemoapplication.activity.DTHActivity;
 import com.logicaltech.mydemoapplication.activity.RechargeActivity;
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +24,7 @@ public class Operator_Adapter extends RecyclerView.Adapter<Operator_Adapter.Recy
 {
     public ArrayList<Operator_Model> orderList;
     public Context mContext;
+    String operatorType;
     public Operator_Adapter(ArrayList<Operator_Model> orderList , Context context)
     {
         this.orderList = orderList;
@@ -41,17 +43,28 @@ public class Operator_Adapter extends RecyclerView.Adapter<Operator_Adapter.Recy
         holder.TV_Operator_Type.setText(account_model.getOperate());
         Picasso.with(mContext).load(account_model.getIcon()).placeholder(R.drawable.profile_icon).into(holder.circleImageViewOperatorType);
 
-
+        operatorType = account_model.getType();
         holder.LinearLayout_Operator_Type.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(mContext,RechargeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                intent.putExtra("token","1");
-                intent.putExtra("operator",orderList.get(position).getOperate());
-                mContext.getApplicationContext().startActivity(intent);
+                if (operatorType.equals("1"))
+                {
+                    Intent intent=new Intent(mContext,RechargeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intent.putExtra("token","1");
+                    intent.putExtra("operator",orderList.get(position).getOperate());
+                    mContext.getApplicationContext().startActivity(intent);
+                }
+                else
+                {
+                    Intent intent=new Intent(mContext,DTHActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intent.putExtra("token","1");
+                    intent.putExtra("operator",orderList.get(position).getOperate());
+                    mContext.getApplicationContext().startActivity(intent);
+                }
             }
         });
     }

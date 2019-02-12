@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activity.AccountListActivity">
 
     <RelativeLayout
+        android:id="@+id/relative_layout_account_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:background="@color/colorPrimary">
@@ -34,28 +34,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_layout_account_list">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_account_list"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_forgotpassword_save"
+        android:id="@+id/button_add_bank_account"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/btn_rounded_green"
         android:text="Add New Account"
         android:textColor="@color/white"
         android:textSize="@dimen/_8sdp" />
 
 
-
-</LinearLayout>
+</RelativeLayout>

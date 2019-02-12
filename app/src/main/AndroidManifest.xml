@@ -10,8 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -51,7 +50,8 @@
         <activity android:name=".activity.RechargeHistoryActivity" />
         <activity android:name=".activity.OperatorTypeActivity" />
         <activity android:name=".activity.WithdrawalHistActivity" />
-        <activity android:name=".activity.WithdrawActivity"></activity>
+        <activity android:name=".activity.WithdrawActivity" />
+        <activity android:name=".activity.DTHActivity"></activity>
     </application>
 
 </manifest>

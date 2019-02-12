@@ -1,10 +1,12 @@
 package com.logicaltech.mydemoapplication.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
@@ -40,7 +42,7 @@ public class WithdrawalHistActivity extends AppCompatActivity
     ArrayList<Withdraw_History_Model> arrayList =new ArrayList<>();
     SessionManeger sessionManeger;
     private String member_id;
-
+    Button btn_withdraw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,6 +55,7 @@ public class WithdrawalHistActivity extends AppCompatActivity
 
         imageView_back_arrow = (ImageView) findViewById(R.id.img_back_arrow_withdraw_history);
         RecyclerView_Withdrawl_History = (RecyclerView) findViewById(R.id.recycler_view_withdrawl_history);
+        btn_withdraw = (Button) findViewById(R.id.button_add_withdraw);
         mGridLayoutManagerBrand = new GridLayoutManager(WithdrawalHistActivity.this, 1);
         RecyclerView_Withdrawl_History.setLayoutManager(mGridLayoutManagerBrand);
 
@@ -64,6 +67,14 @@ public class WithdrawalHistActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 finish();
+            }
+        });
+        btn_withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(WithdrawalHistActivity.this,WithdrawActivity.class);
+                startActivity(intent);
             }
         });
     }

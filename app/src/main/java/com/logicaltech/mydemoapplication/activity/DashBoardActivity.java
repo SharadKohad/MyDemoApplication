@@ -51,7 +51,7 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
 {
     BannerSlider bannerSlider;
     List<Banner> banners=new ArrayList<>();
-    LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking,LL_Withdraw;
+    LinearLayout CV_Mobile_Reacharge,CV_Eletricity_Recharge,LL_Flight_Booking,LL_Withdraw,LL_Utility,LL_Dth,LL_train,LL_Bus,LL_Hotel;
     Intent intent;
     SessionManeger sessionManeger;
     TextView TextViewUserName,TextViewUserEmail;
@@ -98,7 +98,6 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             TextViewUserEmail.setText(userEmail);
             dashBoardData(memberId);
         }
-
         //add banner using resource drawable
         banners.add(new DrawableBanner(R.drawable.slider1));
         banners.add(new DrawableBanner(R.drawable.slider2));
@@ -115,6 +114,29 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         CV_Eletricity_Recharge = (LinearLayout) findViewById(R.id.linear_layout_electricity);
         LL_Flight_Booking = (LinearLayout) findViewById(R.id.linear_layout_flightbooking);
         LL_Withdraw = (LinearLayout) findViewById(R.id.linear_layout_withdraw);
+        LL_Utility = (LinearLayout) findViewById(R.id.linear_layout_utility);
+        LL_Dth = (LinearLayout) findViewById(R.id.linear_layout_DTH);
+        LL_train = (LinearLayout) findViewById(R.id.linear_layout_train);
+        LL_Bus = (LinearLayout) findViewById(R.id.linear_layout_Account_bus);
+        LL_Hotel=(LinearLayout) findViewById(R.id.linear_layout_hotel);
+
+        CV_Mobile_Reacharge.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        LL_Hotel.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         CV_Mobile_Reacharge.setOnClickListener(new View.OnClickListener()
         {
@@ -127,13 +149,23 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             }
         });
 
+        LL_train.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         CV_Eletricity_Recharge.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                intent = new Intent(DashBoardActivity.this,ElectricityRechargeActivity.class);
-                startActivity(intent);
+              //  intent = new Intent(DashBoardActivity.this,ElectricityRechargeActivity.class);
+              //  startActivity(intent);
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -142,8 +174,9 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v)
             {
-                intent = new Intent(DashBoardActivity.this,FlightBookActivity.class);
-                startActivity(intent);
+               // intent = new Intent(DashBoardActivity.this,FlightBookActivity.class);
+               // startActivity(intent);
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -154,6 +187,33 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             {
                 intent = new Intent(DashBoardActivity.this,WithdrawActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        LL_Utility.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        LL_Dth.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                intent = new Intent(DashBoardActivity.this,DTHActivity.class);
+                intent.putExtra("token","0");
+                startActivity(intent);
+            }
+        });
+
+        LL_Bus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DashBoardActivity.this,"Coming Soon",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -168,14 +228,14 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.dash_board, menu);
         return true;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -188,12 +248,11 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
-    {
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_profile)
@@ -201,20 +260,19 @@ public class DashBoardActivity extends AppCompatActivity implements NavigationVi
             intent = new Intent(this,ProfileActivity.class);
             startActivity(intent);
         }
-        else if (id == R.id.nav_gallery)
+        else if (id == R.id.nav_withdraw)
         {
-            intent = new Intent(this,SignupActivity.class);
+            intent = new Intent(this,WithdrawActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow)
+        } else if (id == R.id.nav_accountlist)
         {
-
-        } else if (id == R.id.nav_manage)
+            intent = new Intent(this,AccountListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_recharge)
         {
-
-        } else if (id == R.id.nav_share)
-        {
-            intent = new Intent(this,ProfileActivity.class);
+            intent = new Intent(this,RechargeActivity.class);
+            intent.putExtra("token","0");
             startActivity(intent);
         }
         else if (id == R.id.nav_logout)

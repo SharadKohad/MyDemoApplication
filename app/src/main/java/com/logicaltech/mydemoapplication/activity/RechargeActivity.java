@@ -23,7 +23,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -51,14 +53,14 @@ public class RechargeActivity extends AppCompatActivity
 {
     ImageView IV_Back_Arrow,IV_Contact_Access;
     Button btn_recharge;
-    private ProgressBar progress_bar;
     private View parent_view;
     TextInputEditText textInputEditTextMobileNumber;
-    TextInputLayout textinputlayout_opertor;
     private static final int PERMISSION_REQUEST_CONTACT=0;
-    TextInputEditText textInputEditText_operator,TextInputEditText_Amount;
+    TextInputEditText TextInputEditText_Amount;
     String token="0",memberId;
     SessionManeger sessionManeger;
+    LinearLayout linearLayout_mobile_rechargge;
+    TextView TV_Operator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,23 +69,21 @@ public class RechargeActivity extends AppCompatActivity
         setContentView(R.layout.activity_recharge);
         IV_Back_Arrow = (ImageView) findViewById(R.id.reacharg_back_arrow);
         btn_recharge = (Button) findViewById(R.id.btn_processrecharge);
-        progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
-        textinputlayout_opertor = (TextInputLayout)findViewById(R.id.textinputlayout_opertor);
         parent_view = findViewById(android.R.id.content);
         IV_Contact_Access = (ImageView) findViewById(R.id.contact_access);
         textInputEditTextMobileNumber = (TextInputEditText) findViewById(R.id.et_mobilenumber);
-        textInputEditText_operator =(TextInputEditText) findViewById(R.id.tiet_operator);
+        TV_Operator = (TextView) findViewById(R.id.TextView_dth_operator);
         TextInputEditText_Amount = (TextInputEditText) findViewById(R.id.textinputedittext_amount);
         sessionManeger = new SessionManeger(getApplicationContext());
+        linearLayout_mobile_rechargge= (LinearLayout) findViewById(R.id.linear_layout_mobilerecharge_operator);
 
         HashMap<String, String> hashMap = sessionManeger.getUserDetails();
         memberId = hashMap.get(SessionManeger.MEMBER_ID);
-
         token = getIntent().getExtras().getString("token");
 
         if (token.equals("1"))
         {
-            textInputEditText_operator.setText(getIntent().getExtras().getString("operator"));
+            TV_Operator.setText(getIntent().getExtras().getString("operator"));
         }
 
         IV_Back_Arrow.setOnClickListener(new View.OnClickListener()
@@ -114,7 +114,7 @@ public class RechargeActivity extends AppCompatActivity
             }
         });
 
-        textinputlayout_opertor.setOnClickListener(new View.OnClickListener()
+        TV_Operator.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -170,27 +170,23 @@ public class RechargeActivity extends AppCompatActivity
 
     private void searchAction()
     {
-        progress_bar.setVisibility(View.VISIBLE);
         btn_recharge.setAlpha(0f);
         new Handler().postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                progress_bar.setVisibility(View.GONE);
                 btn_recharge.setAlpha(1f);
-                registration(memberId,"1",textInputEditText_operator.getText().toString(),TextInputEditText_Amount.getText().toString(),textInputEditTextMobileNumber.getText().toString());
+                putRecharge(memberId,"1",TV_Operator.getText().toString(),TextInputEditText_Amount.getText().toString(),textInputEditTextMobileNumber.getText().toString());
             }
         }, 1000);
     }
 
-    private void getContact()
-    {
+    private void getContact() {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         startActivityForResult(intent, 1);
     }
-    public void askForContactPermission()
-    {
+    public void askForContactPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
@@ -207,8 +203,7 @@ public class RechargeActivity extends AppCompatActivity
         }
     }
 
-
-    public void registration(final String member_Id, final String recharge_type, final String operator, final String amount, final String number)
+    public void putRecharge(final String member_Id, final String recharge_type, final String operator, final String amount, final String number)
     {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = Constant.URL+"addRecharge?MemberID="+member_Id+"&RechargeType="+recharge_type+"&Operator="+operator+"&Amount="+amount+"&Number="+number+"&DeviceType=Android";

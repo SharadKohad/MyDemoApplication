@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.WithdrawActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativelayout_reacharg_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/imageview_back_arrow_reacharg_withdraw"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_arrow_back"
+            android:padding="@dimen/_10sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/imageview_back_arrow_reacharg_withdraw"
+            android:text="WithDraw"
+            android:textSize="17dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:gravity="center|left"/>
+
+    </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_withdraw_totalbalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_view_profile"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="20000"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
+
+            <LinearLayout
+                android:id="@+id/linear_layout_mobile_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+
+                <EditText
+                    android:id="@+id/EditText_Mobileno_withdraw"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:textColor="@color/dim_grey"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+
+                <EditText
+                    android:id="@+id/EditText_account_no_withdraw"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/dim_grey"
+                    android:gravity="center|left"
+                    android:textSize="@dimen/_12sdp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:background="#0000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_mobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+
+                <EditText
+                    android:id="@+id/EditText_PhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="number"
+                    android:hint="Enter Amount"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_withdraw_tds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+
+                <TextView
+                    android:id="@+id/TV_tds"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+                <TextView
+                    android:id="@+id/TV_Charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/shadow_background_textview">
+
+                <TextView
+                    android:id="@+id/TV_paid_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linear_layout_mobile_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:visibility="gone"
+                android:background="@drawable/shadow_background_textview">
+
+
+                <EditText
+                    android:id="@+id/EditText_Mobileno_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:hint="Enter Otp Here"
+                    android:textColor="@color/dim_grey"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:background="#0000" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp">
+
+                <Button
+                    android:id="@+id/button_getotp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/btn_rounded_green"
+                    android:gravity="center"
+                    android:text="Get Otp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
+
+                <Button
+                    android:id="@+id/button_withdrawle"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/btn_rounded_green"
+                    android:gravity="center"
+                    android:text="WITHDRAW"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+</LinearLayout>
